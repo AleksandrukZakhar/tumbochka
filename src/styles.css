@@ -49,7 +49,7 @@ header {
     height: 40px;
 }
 
-.container > input, .input-container > input {
+.container > input, .input-container > input, .add-form > input {
     width: 25rem;
     padding: .7rem 0;
     border: 0;
@@ -57,11 +57,11 @@ header {
     text-align: center;
 }
 
-.container > input::placeholder, .input-container > input::placeholder {
+.container > input::placeholder, .input-container > input::placeholder, .add-form > input::placeholder {
     text-align: center;
 }
 
-.container > button {
+.container > button, .add-form > button {
     padding: .7rem 2rem;
     border: 1px solid var(--black-primary);
     border-radius: 10px;
@@ -71,7 +71,7 @@ header {
     font-weight: 600;
 }
 
-.container > button:hover {
+.container > button:hover, .add-form > button:hover {
     color: var(--green-primary);
     border: 1px solid var(--green-primary);
 }
@@ -269,6 +269,20 @@ a:visited {
     position: relative;
 }
 
+.add-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.add-form > input {
+    border: 1px solid var(--black-primary);
+}
+
 @media (max-width: 1100px) {
     header {
         height: 4rem;
@@ -298,3 +312,4 @@ a:visited {
         left: 10px;
     }
 }
+
