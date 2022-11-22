@@ -52,82 +52,89 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const productsRef = collection(db, "Products");
 
-const snapshot = await getDocs(productsRef);
 const products = [];
 
-snapshot.forEach((doc) => {
-    console.log(doc.data());
+const populateProducts = () => {
+    products.forEach((product) => {
+        const { image, price, likes, name } = product;
 
-    return products.push(doc.data());
-});
+        const productEl = document.createElement("div");
 
-products.forEach((product) => {
-    const { image, price, likes, name } = product;
+        productEl.classList.add("product");
 
-    const productEl = document.createElement("div");
+        const productImg = document.createElement("img");
 
-    productEl.classList.add("product");
+        productImg.src = image;
+        productImg.alt = "";
 
-    const productImg = document.createElement("img");
+        productEl.appendChild(productImg);
 
-    productImg.src = image;
-    productImg.alt = "";
+        const priceContainer = document.createElement("div");
 
-    productEl.appendChild(productImg);
+        priceContainer.classList.add("price-container");
 
-    const priceContainer = document.createElement("div");
+        productEl.appendChild(priceContainer);
 
-    priceContainer.classList.add("price-container");
+        const productPrice = document.createElement("p");
 
-    productEl.appendChild(priceContainer);
+        productPrice.textContent = `${price}грн`;
+        productPrice.classList.add("price");
 
-    const productPrice = document.createElement("p");
+        priceContainer.appendChild(productPrice);
 
-    productPrice.textContent = `${price}грн`;
-    productPrice.classList.add("price");
+        const heartContainer = document.createElement("div");
 
-    priceContainer.appendChild(productPrice);
+        heartContainer.classList.add("heart-container");
 
-    const heartContainer = document.createElement("div");
+        priceContainer.appendChild(heartContainer);
 
-    heartContainer.classList.add("heart-container");
+        const likesCount = document.createElement("p");
 
-    priceContainer.appendChild(heartContainer);
+        likesCount.textContent = likes;
 
-    const likesCount = document.createElement("p");
+        heartContainer.appendChild(likesCount);
 
-    likesCount.textContent = likes;
+        const heart = document.createElement("img");
 
-    heartContainer.appendChild(likesCount);
+        heart.src = Heart;
+        heart.alt = "heart";
 
-    const heart = document.createElement("img");
+        heartContainer.appendChild(heart);
 
-    heart.src = Heart;
-    heart.alt = "heart";
+        const productName = document.createElement("p");
 
-    heartContainer.appendChild(heart);
+        productName.textContent = name;
 
-    const productName = document.createElement("p");
+        productEl.appendChild(productName);
 
-    productName.textContent = name;
-
-    productEl.appendChild(productName);
-
-    productsContainer.appendChild(productEl);
-});
-
-addButton.addEventListener("click", () => {
-    main.classList.add("hide");
-    addForm.classList.remove("hide");
-});
-
-submit.addEventListener("click", async () => {
-    await addDoc(productsRef, {
-        image: img.value,
-        price: price.value,
-        name: name.value,
-        likes: 0,
+        productsContainer.appendChild(productEl);
     });
 
-    document.location.reload();
-});
+    addButton.addEventListener("click", () => {
+        main.classList.add("hide");
+        addForm.classList.remove("hide");
+    });
+
+    submit.addEventListener("click", async () => {
+        await addDoc(productsRef, {
+            image: img.value,
+            price: price.value,
+            name: name.value,
+            likes: 0,
+        });
+
+        document.location.reload();
+    });
+};
+
+const getDocuments = async () => {
+    const snapshot = await getDocs(productsRef);
+
+    snapshot?.forEach((doc) => {
+        return products.push(doc.data());
+    });
+
+    populateProducts();
+};
+
+getDocuments();
