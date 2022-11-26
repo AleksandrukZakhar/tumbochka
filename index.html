@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="icon" type="image/x-icon" href="./public/favicon.ico" />
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="stylesheet" href="./src/styles.css" />
         <script defer type="module" src="./src/index.js"></script>
         <title>TUMBOCHKA</title>
@@ -14,7 +14,7 @@
             <div class="container">
                 <div class="title-container">
                     <h1>тумбочка</h1>
-                    <img src="./public/baza.png" />
+                    <img src="/baza.png" />
                 </div>
                 <input
                     type="text"
@@ -27,9 +27,9 @@
                     <a href="#">EN</a>
                 </div>
                 <div class="links-container">
-                    <a href="#">Вхід</a>
+                    <a href="#" id="log-in">Вхід</a>
                     <p class="divider-lang">|</p>
-                    <a href="#">Реєстрація</a>
+                    <a href="#" id="register">Реєстрація</a>
                 </div>
             </div>
             <div class="filters-container">
@@ -52,14 +52,14 @@
                 </div>
                 <div class="title-container">
                     <h1>тумбочка</h1>
-                    <img src="./public/baza.png" />
+                    <img src="/baza.png" />
                 </div>
                 <div>
-                    <img src="./public/search.svg" class="mobile-search-icon" />
+                    <img src="/search.svg" class="mobile-search-icon" />
                 </div>
             </div>
             <div class="input-container">
-                <img src="./public/x.svg" class="x" />
+                <img src="/x.svg" class="x" />
                 <input
                     type="text"
                     placeholder="Я хочу купити на TUMBOCHKA..."
@@ -76,7 +76,7 @@
                 </div>
                 <div class="title-container">
                     <h1>тумбочка</h1>
-                    <img src="./public/baza.png" />
+                    <img src="/baza.png" />
                 </div>
                 <div class="links-container">
                     <a href="#" class="selected">UA</a>
@@ -120,6 +120,9 @@
             <input placeholder="price" id="price" />
             <input placeholder="image url" id="img" />
             <button id="submit">Submit</button>
+        </div>
+        <div class="sign-in hide">
+            <button id="submit-register">Sign in with Google</button>
         </div>
     </body>
 </html>
